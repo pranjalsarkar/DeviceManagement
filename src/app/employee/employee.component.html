@@ -1,0 +1,39 @@
+<form>
+  <div class="col-md-12">
+    <h2 class="text-center">
+      Assign selected device :
+      <span style="color: royalblue;">{{ this.selectedDevice?.name }}</span>
+    </h2>
+
+    <div *ngFor="let emp of Employees" class="col-md-6">
+      <ul clas="list-group">
+        <li
+          class="list-group-item list-group-item-action list-group-item-primary"
+        >
+          <input
+            name="{{ emp.empNo }}"
+            type="checkbox"
+            value="{{ emp.empNo }}"
+            [(ngModel)]="emp.isSelected"
+          />
+          {{ emp.empName }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-4">
+      <button
+        *ngIf="this.selectedDevice?.name"
+        class="btn btn-success mr-1"
+        (click)="assignEmployees()"
+      >
+        Assign
+      </button>
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+
+    <div *ngIf="this.selectedDevice == null" class="col-md-3">
+      <span style="color: red;">Invalid Device to assign</span>
+    </div>
+  </div>
+</form>

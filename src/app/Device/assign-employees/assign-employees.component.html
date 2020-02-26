@@ -1,0 +1,25 @@
+<div class="col-md-12">
+  <h2 class="text-center">
+    Assign selected device : {{ this.selectedDevice?.name }}
+  </h2>
+
+  <div *ngFor="let emp of Employees" class="col-md-6">
+    <ul clas="list-group">
+      <li class="list-group-item">
+        <input type="checkbox" value="{{ emp.empNo }}" />
+        {{ emp.empName }}
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+    <button *ngIf="this.selectedDevice?.name" class="btn btn-success mr-1">
+      Assign
+    </button>
+    <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+  </div>
+
+  <div *ngIf="this.selectedDevice == null" class="col-md-3">
+    <span style="color: red;">Invalid Device to assign</span>
+  </div>
+</div>

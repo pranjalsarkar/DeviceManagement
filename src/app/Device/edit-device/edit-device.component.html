@@ -1,0 +1,70 @@
+<div class="col-md-12 user-container">
+  <h2 class="text-center">Edit Device</h2>
+
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+    <div class="form-group col-4">
+      <label for="serialno"
+        >Serial No.<span style="color: red;">*</span>:</label
+      >
+      <input
+        type="text"
+        formControlName="serialno"
+        placeholder="Serial No"
+        name="serialno"
+        class="form-control"
+        id="serialno"
+        min="0"
+        max="99999"
+        #serno
+        readonly
+      />
+    </div>
+
+    <div class="form-group col-4">
+      <label for="name">Name<span style="color: red;">*</span>:</label>
+      <input
+        type="text"
+        formControlName="name"
+        placeholder="Name"
+        name="name"
+        class="form-control-plaintext"
+        id="name"
+        maxlength="50"
+        #dname
+      />
+      <div *ngIf="submitted && f.name.errors">
+        <div *ngIf="f.name.errors.required">
+          <span style="color: red;">Name is required</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group col-4">
+      <label for="type">Type<span style="color: red;">*</span>:</label>
+      <select
+        formControlName="type"
+        placeholder="Type"
+        name="type"
+        class="form-control"
+        id="type"
+        #dtype
+      >
+        <option value=""></option>
+        <option *ngFor="let m of deviceLookup" value="{{ m.id }}">{{
+          m.value
+        }}</option>
+      </select>
+
+      <div *ngIf="submitted && f.type.errors">
+        <div *ngIf="f.type.errors.required">
+          <span style="color: red;">type is required</span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <button class="btn btn-success mr-1">Update</button>
+      <button class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+    </div>
+  </form>
+</div>

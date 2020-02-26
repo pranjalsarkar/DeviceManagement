@@ -1,0 +1,23 @@
+<div class="card" style="width: 18rem; background-color:lightblue;">
+  <div class="card-body" style="color: royalblue;">
+    <h5 class="card-title">{{ this.deviceName }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ this.deviceType }}</h6>
+    <p class="card-text">
+      Device description to be implemented later
+    </p>
+    <button
+      class="btn btn-success mr-2"
+      type="button"
+      (click)="editDevice(this.serialNo)"
+    >
+      Edit Device
+    </button>
+    <button
+      class="btn btn-success r-2"
+      type="button"
+      (click)="assignDevice(this.serialNo)"
+    >
+      Assign device
+    </button>
+  </div>
+</div>
