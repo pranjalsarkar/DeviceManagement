@@ -41,6 +41,10 @@ export class EmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (!window.localStorage.getItem("token")) {
+      this.router.navigate(["Login"]);
+      return;
+    }
     this.deviceService.getEmployees().subscribe(t => (this.Employees = t));
     this.serialNo = this.activeRoute.snapshot.paramMap.get("device");
 

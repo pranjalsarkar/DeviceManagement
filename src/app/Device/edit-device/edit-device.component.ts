@@ -36,6 +36,11 @@ export class EditDeviceComponent implements OnInit {
   selectedDevice: Device;
 
   ngOnInit() {
+    if (!window.localStorage.getItem("token")) {
+      this.router.navigate(["Login"]);
+      return;
+    }
+
     let serialNo = this.activeRoute.snapshot.paramMap.get("device");
 
     this.deviceFacade.getDevices().subscribe(t => {

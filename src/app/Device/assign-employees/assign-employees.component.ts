@@ -23,6 +23,11 @@ export class AssignEmployeesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    if (!window.localStorage.getItem("token")) {
+      this.router.navigate(["Login"]);
+      return;
+    }
+
     this.deviceService.getEmployees().subscribe(t => (this.Employees = t));
     let serialNo = this.activeRoute.snapshot.paramMap.get("device");
 

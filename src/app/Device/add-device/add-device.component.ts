@@ -38,6 +38,11 @@ export class AddDeviceComponent implements OnInit {
   deviceLookup: Lookup[];
 
   ngOnInit() {
+    if (!window.localStorage.getItem("token")) {
+      this.router.navigate(["Login"]);
+      return;
+    }
+
     this.addForm = this.formBuilder.group({
       serialno: [
         Guid.create().toString(),

@@ -13,7 +13,12 @@ export class DeviceCardComponent implements OnInit {
 
   constructor(private router: Router) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (!window.localStorage.getItem("token")) {
+      this.router.navigate(["Login"]);
+      return;
+    }
+  }
 
   editDevice(serNo: string) {
     this.router.navigate(["/Edit", serNo]);

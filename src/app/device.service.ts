@@ -12,10 +12,34 @@ export class DeviceService {
 
   //login api
   login(loginPayload): Observable<ApiResponse> {
-    return this.http.post<ApiResponse>(
-      "https://localhost:5001/api/nguser/AuthenticateUser",
-      loginPayload
-    );
+    //Web API call to authenticate user
+
+    //return this.http.post<ApiResponse>(
+    //  "https://localhost:5001/api/nguser/AuthenticateUser",
+    //  loginPayload
+    // );
+
+    let valid: boolean = false;
+
+    if (loginPayload.username == "admin" && loginPayload.password == "admin") {
+      valid = true;
+    }
+    let apiResponse = new ApiResponse();
+    apiResponse.message = "Token created successfully";
+    apiResponse.status = 200;
+
+    if (valid) {
+      apiResponse.result = {
+        token:
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImFkbWluIiwibmJmIjoxNTgyNzgxMzM3LCJleHAiOjE1ODMzODYxMzcsImlhdCI6MTU4Mjc4MTMzN30.7gOH91XBiFiHp-Y8AwfLqiYRTGDmTooSMtqVfBFKSW0"
+      };
+    } else {
+      apiResponse.result = {
+        token: ""
+      };
+    }
+
+    return of(apiResponse);
   }
 
   getDevices(): Observable<Device[]> {
@@ -25,6 +49,7 @@ export class DeviceService {
     //return this.http.get<Device[]>("https://localhost:5001/api/Device");
   }
 
+  //not used
   searchDevices(searchText: string): Observable<Device[]> {
     //This could be implemented with httpclient module and request API to search based on searchtext and return the filtered value
     //return of(null);

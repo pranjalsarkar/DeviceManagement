@@ -56,9 +56,9 @@ export class SearchDeviceComponent implements OnInit {
     this.deviceFacade.loadDevices(); //Load devices to current state
 
     //load saved search
-    //this.deviceFacade.getSearchedDevice().subscribe(t => {
-    //  this.searchResult = t;
-    //});
+    this.deviceFacade.getSearchedDevice().subscribe(t => {
+      this.searchResult = t;
+    });
 
     //Type ahead sample
     /*const searchBox = document.getElementById("search-box");
