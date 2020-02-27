@@ -1,56 +1,59 @@
-<div class="col-md-12 user-container">
-  <div>
-    <div class="col-lg-6 col-lg-offset-8">
-      <div class="input-group">
-        <input
-          type="text"
-          class="form-control mr-2"
-          [(ngModel)]="searchText"
-          (keyup.enter)="searchDevices()"
-          maxlength="25"
-          id="search-box"
-        />
-        <span class="input-group-btn">
-          <button
-            class="btn btn-warning mr-2"
-            type="button"
-            (click)="searchDevices()"
-          >
-            Search
-          </button>
-          <button
-            class="btn btn-success r-2"
-            type="button"
-            (click)="addDevice()"
-          >
-            Add New Device
-          </button>
-        </span>
-      </div>
-      <!-- /input-group -->
-    </div>
-    <!-- /.col-lg-4 -->
-  </div>
-
-  <div class="card-deck col-md-9">
-    <ng-container
-      *ngIf="this.searchResult?.length > 0; else devicenotfound"
-      class="row"
-    >
-      <div *ngFor="let res of searchResult">
-        <div class="input-group mt-2">
-          <app-device-card
-            [serialNo]="res.serialNo"
-            [deviceType]="res.type"
-            [deviceName]="res.name"
-          ></app-device-card>
+<form>
+  <div class="col-md-12 user-container">
+    <div>
+      <div class="col-lg-6 col-lg-offset-8">
+        <div class="input-group">
+          <input
+            name="search-box"
+            type="text"
+            class="form-control mr-2"
+            [(ngModel)]="searchText"
+            (keyup.enter)="searchDevices()"
+            maxlength="25"
+            id="search-box"
+          />
+          <span class="input-group-btn">
+            <button
+              class="btn btn-warning mr-2"
+              type="button"
+              (click)="searchDevices()"
+            >
+              Search
+            </button>
+            <button
+              class="btn btn-success r-2"
+              type="button"
+              (click)="addDevice()"
+            >
+              Add New Device
+            </button>
+          </span>
         </div>
+        <!-- /input-group -->
       </div>
-    </ng-container>
-  </div>
-  <ng-template #devicenotfound>
-    <div *ngIf="this.searchTriggered">
-      No device found
+      <!-- /.col-lg-4 -->
     </div>
-  </ng-template>
-</div>
+
+    <div class="card-deck col-md-9">
+      <ng-container
+        *ngIf="this.searchResult?.length > 0; else devicenotfound"
+        class="row"
+      >
+        <div *ngFor="let res of searchResult">
+          <div class="input-group mt-2">
+            <app-device-card
+              [serialNo]="res.serialNo"
+              [deviceType]="res.type"
+              [deviceName]="res.name"
+            ></app-device-card>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+    <ng-template #devicenotfound>
+      <div *ngIf="this.searchTriggered">
+        No device found
+      </div>
+    </ng-template>
+  </div>
+</form>

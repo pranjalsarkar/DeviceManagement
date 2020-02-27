@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
 import { DeviceService } from "../../device.service";
 import { DeviceFacadeService } from "../../Core/device-facade.service";
